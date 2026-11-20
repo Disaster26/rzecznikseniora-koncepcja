@@ -21,8 +21,8 @@
 @font-face{font-family:Atkinson;src:url(fonts/atkinson-hyperlegible-latin-700-r.woff2) format("woff2");font-weight:700;font-display:swap;unicode-range:U+0020-007E,U+00A0,U+00A9,U+00AB,U+00B7,U+00BB,U+00D3,U+00F3}
 @font-face{font-family:Atkinson;src:url(fonts/atkinson-hyperlegible-latin-ext-700-pl.woff2) format("woff2");font-weight:700;font-display:swap;unicode-range:U+0104-0107,U+0118-0119,U+0141-0144,U+015A-015B,U+0179-017C,U+2013-2014,U+201C-201E,U+2026}
 @font-face{font-family:"Poppins fb";src:local("Arial");size-adjust:112%;ascent-override:94%;descent-override:31%}
-/* logo: czern + biel; akcent: czerwien serca, ktorym podpisuja haslo (kontrast z biela 7,1:1) */
-:root{--bk:#000;--ink:#111214;--mut:#3A3D44;--red:#B00F2B;--red-d:#8E0C22;--g:#F1F2F4;--line:#D5D8DE;--hh:76px;--w:min(calc(100vw - 48px),1720px);--H:Poppins,"Poppins fb",Arial,sans-serif;--T:Atkinson,Verdana,Arial,sans-serif}
+/* czern + biel z logo; trzeci kolor: sloneczna zolc z logo projektu siostrzanego Mediator Cafe (#FFB30B, czarny tekst na zolci 12:1) */
+:root{--bk:#000;--ink:#111214;--mut:#3A3D44;--acc:#FFB30B;--acc-d:#F0A000;--g:#F1F2F4;--line:#D5D8DE;--hh:76px;--w:min(calc(100vw - 48px),1720px);--H:Poppins,"Poppins fb",Arial,sans-serif;--T:Atkinson,Verdana,Arial,sans-serif}
 html[data-t="1"]{font-size:112.5%}
 html[data-t="2"]{font-size:125%}
 *{box-sizing:border-box}
@@ -35,9 +35,10 @@ p{margin:0}
 .wrap{width:var(--w);margin-inline:auto}
 .skip{position:absolute;left:-9999px;top:8px;z-index:100;background:#fff;padding:12px 16px;font-weight:700}
 .skip:focus{left:8px}
-:focus-visible{outline:3px solid var(--red);outline-offset:3px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:60px;padding:14px 28px;background:var(--red);color:#fff;font:600 1.0625rem/1.2 var(--H);text-decoration:none;border:0;border-radius:6px;cursor:pointer;transition:background .15s}
-.btn:hover{background:var(--red-d)}
+:focus-visible{outline:3px solid #000;outline-offset:3px;box-shadow:0 0 0 6px var(--acc)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:60px;padding:14px 28px;background:var(--acc);color:#000;font:600 1.0625rem/1.2 var(--H);text-decoration:none;border:0;border-radius:6px;cursor:pointer;transition:background .15s}
+.btn:hover{background:var(--acc-d)}
+.btn.ciemny{background:#000;color:#fff}.btn.ciemny:hover{background:#2A2C31}
 .btn svg{width:22px;height:22px;flex:none}
 
 /* naglowek */
@@ -48,12 +49,12 @@ p{margin:0}
 .menu{display:flex;align-items:center;gap:clamp(18px,2vw,40px);margin-left:auto}
 .menu a{font:600 1.0625rem/1 var(--H);text-decoration:none;padding:10px 0;border-bottom:3px solid transparent}
 .menu a:hover{border-color:var(--line)}
-.menu a.on{border-color:var(--red)}
+.menu a.on{border-color:var(--acc)}
 .tools{display:flex;align-items:center;gap:12px}
 .aplus{display:inline-flex;align-items:center;gap:8px;min-height:52px;padding:0 16px;background:#fff;border:2px solid var(--ink);border-radius:6px;font:600 1rem/1 var(--H);color:var(--ink);cursor:pointer}
 .aplus b{font-size:1.25em}
-.tel{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 20px;background:var(--red);color:#fff;border-radius:6px;font:600 1.125rem/1 var(--H);text-decoration:none;white-space:nowrap}
-.tel:hover{background:var(--red-d)}
+.tel{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 20px;background:var(--acc);color:#000;border-radius:6px;font:600 1.125rem/1 var(--H);text-decoration:none;white-space:nowrap}
+.tel:hover{background:var(--acc-d)}
 .tel svg{width:22px;height:22px}
 .burger{display:none}
 .aplus-m{display:none}
@@ -72,8 +73,9 @@ p{margin:0}
 .hero .gdzie{margin-top:28px;color:#E2E3E6;font-size:1.0625rem}
 .hero .gdzie a{color:#fff}
 /* motyw: petla z wezlow (z logo) jako sygnatura sekcji */
-.wezly{display:block;width:120px;height:16px;color:var(--red);margin-bottom:22px}
-.hero .wezly{color:#fff;margin-bottom:28px}
+.wezly{display:block;width:120px;height:16px;color:var(--bk);margin-bottom:22px}
+.hero .wezly{color:var(--acc);margin-bottom:28px}
+.szary .wezly circle[fill="#fff"]{fill:var(--g)}
 
 /* sekcje */
 section{padding:clamp(64px,7vw,120px) 0}
@@ -94,15 +96,15 @@ h2{font-size:clamp(2rem,2.6vw,3.1rem)}
 .misja figure img{width:100%;aspect-ratio:13/9;object-fit:cover;border-radius:6px}
 .lista{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:0 48px}
 .lista li{position:relative;padding:24px 0 24px 44px;border-top:2px solid var(--line);font-size:1.1em;line-height:1.5}
-.lista li::before{content:"";position:absolute;left:4px;top:31px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--red)}
-.lista li:nth-child(odd)::before{background:var(--red)}
+.lista li::before{content:"";position:absolute;left:4px;top:31px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #000}
+.lista li:nth-child(odd)::before{background:var(--acc)}
 
-.cytat{background:var(--red);color:#fff;position:relative;overflow:hidden}
+.cytat{background:var(--acc);color:#000;position:relative;overflow:hidden}
 .cytat .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:48px;align-items:center}
 .cytat blockquote{margin:0;max-width:1220px}
-.cytat blockquote p{font:600 clamp(1.6rem,2.5vw,3.2rem)/1.3 var(--H);color:#fff}
-.cytat cite{display:block;margin-top:28px;font-style:normal;font-size:1.125rem;color:#fff}
-.cytat .znak{width:clamp(220px,22vw,380px);height:auto;color:#fff;opacity:.95}
+.cytat blockquote p{font:600 clamp(1.6rem,2.5vw,3.2rem)/1.3 var(--H);color:#000}
+.cytat cite{display:block;margin-top:28px;font-style:normal;font-size:1.125rem;color:#000}
+.cytat .znak{width:clamp(220px,22vw,380px);height:auto;color:#000}
 
 .ankieta .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(40px,5vw,96px);align-items:center}
 .ankieta figure{margin:0}
@@ -121,7 +123,7 @@ h2{font-size:clamp(2rem,2.6vw,3.1rem)}
 .dane li:last-child{border-bottom:2px solid var(--line)}
 .dane span{display:block;font-size:1rem;color:var(--mut)}
 .dane a{display:inline-block;margin-top:4px;font:600 clamp(1.35rem,1.6vw,1.9rem)/1.25 var(--H);color:var(--bk);text-decoration-thickness:2px;text-underline-offset:5px;overflow-wrap:anywhere}
-.dane a:hover{color:var(--red)}
+.dane a:hover{text-decoration-thickness:4px;text-decoration-color:var(--acc)}
 .dane .num{font-size:clamp(1.8rem,2.4vw,2.6rem)}
 .mapa{position:relative;min-height:420px;background:#E3E5E9;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px}
 .mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -130,7 +132,7 @@ h2{font-size:clamp(2rem,2.6vw,3.1rem)}
 
 /* stopka */
 .stopka{background:var(--ink);color:#fff;padding:56px 0 32px}
-.stopka .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(2,minmax(0,1fr));gap:32px 48px}
+.stopka .wrap{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:32px 48px}
 .stopka .logo{color:#fff}
 .stopka .logo svg{height:64px}
 .stopka h3{color:#fff;font-size:1.125rem;margin-bottom:10px}
@@ -153,15 +155,66 @@ h2{font-size:clamp(2rem,2.6vw,3.1rem)}
 .cookies[hidden]{display:none}
 .cookies p{flex:1 1 240px}
 .cookies button{font:600 1rem/1 var(--H);min-height:48px;padding:0 16px;border:2px solid var(--ink);background:#fff;color:var(--ink);border-radius:6px;cursor:pointer}
-.cookies button.t{background:var(--red);border-color:var(--red);color:#fff}
+.cookies button.t{background:var(--acc);border-color:#000;color:#000}
 
+
+/* aktualnosci (wzor: duze, czytelne kafle jak seniornett.no) */
+.glowa{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px}
+.glowa .tekst p{margin-top:18px}
+.wszystkie{font:600 1.0625rem/1.2 var(--H);color:#000;text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:var(--acc);text-underline-offset:6px;padding:12px 0}
+.wszystkie:hover{text-decoration-color:#000}
+.kat{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 0;padding:0;list-style:none}
+.kat li{font:600 1rem/1 var(--H);padding:12px 16px;border:2px solid var(--ink);border-radius:6px;background:#fff}
+.kat li:first-child{background:#000;color:#fff;border-color:#000}
+.wpisy{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;margin-top:36px;align-items:stretch}
+.wpis{display:flex;flex-direction:column;background:#fff;border:2px solid var(--line);border-radius:8px;overflow:hidden;text-decoration:none;color:var(--ink);transition:border-color .15s}
+.wpis:hover{border-color:#000}
+.wpis .tr{padding:clamp(20px,2vw,30px);display:flex;flex-direction:column;flex:1}
+.wpis .meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;font-size:.95rem;color:var(--mut)}
+.wpis .meta b{font-family:var(--H);font-weight:600;color:#000;background:var(--acc);padding:4px 9px;border-radius:4px}
+.wpis h3{margin-top:14px;font-size:clamp(1.25rem,1.3vw,1.55rem);line-height:1.25}
+.wpis p{margin-top:12px;font-size:1.05rem;line-height:1.55}
+.wpis .dalej{margin-top:auto;padding-top:16px;font:600 1rem/1 var(--H);color:#000;text-decoration:underline;text-decoration-color:var(--acc);text-decoration-thickness:3px;text-underline-offset:5px}
+.wpis.duzy-w{background:var(--ink);border-color:var(--ink);color:#fff;min-height:100%}
+.wpis.duzy-w:hover{border-color:var(--acc)}
+.wpis.duzy-w .tr{padding:clamp(28px,3.4vw,56px)}
+.wpis.duzy-w .meta{color:#D4D6DA}
+.wpis.duzy-w h3{color:#fff;font-size:clamp(1.7rem,2.4vw,2.7rem);line-height:1.18;margin-top:22px}
+.wpis.duzy-w p{color:#EDEDEF;font-size:1.15rem;margin-top:18px;max-width:34em}
+.wpis.duzy-w .dalej{color:#fff;padding-top:32px}
+.wpis.duzy-w .wezly{color:var(--acc);margin:auto 0 0;padding-top:36px;width:180px;height:24px;box-sizing:content-box}
+.wpis.duzy-w .wezly circle[fill="#fff"]{fill:var(--ink)}
+.boczne{display:grid;gap:20px}
+.boczne .wpis{border-left:6px solid #000}
+.boczne .wpis:hover{border-left-color:var(--acc)}
+.uwaga{margin-top:26px;font-size:1rem;color:var(--mut)}
+/* projekty */
+.projekty-l{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3vw,48px);margin:40px 0 0;padding:0;list-style:none}
+.projekty-l li{display:flex;flex-direction:column;border-top:6px solid #000;padding-top:22px}
+.projekty-l li:nth-child(2){border-color:var(--acc)}
+.projekty-l .nr{font:600 3rem/1 var(--H);color:#000}
+.projekty-l .stan{align-self:flex-start;margin-top:16px;font:600 .95rem/1 var(--H);padding:8px 12px;border:2px solid #000;border-radius:4px}
+.projekty-l h3{margin-top:16px;font-size:clamp(1.35rem,1.5vw,1.75rem);line-height:1.25}
+.projekty-l p{margin-top:12px}
+.projekty-l .btn{margin-top:auto;align-self:flex-start}
+.projekty-l p{margin-bottom:24px}
+/* partnerzy + Mediator Cafe */
+.partnerzy .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(40px,5vw,96px);align-items:center}
+.mc{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,3vw,48px);align-items:center;border:2px solid #000;border-top:12px solid var(--acc);border-radius:8px;padding:clamp(22px,3vw,44px);background:#fff}
+.mc img{width:100%;max-width:360px}
+.mc h3{font-size:clamp(1.4rem,1.6vw,1.9rem)}
+.mc p{margin-top:12px;font-size:1.05rem}
+.mc .btn{margin-top:22px}
+.typy{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.typy li{font:600 1rem/1 var(--H);padding:12px 16px;background:var(--g);border-radius:6px}
 @media (min-width:1900px){.hero-tx{max-width:min(44%,800px)}}
 @media (max-width:1260px){.menu{gap:22px}.aplus .opis{display:none}}
+@media (max-width:1100px) and (min-width:861px){.projekty-l{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:1100px){
   .menu{display:none;position:fixed;inset:var(--hh) 0 auto 0;background:#fff;border-bottom:2px solid var(--ink);flex-direction:column;align-items:stretch;gap:0;padding:8px 24px 24px;margin:0}
   .top.open .menu{display:flex}
   .menu a{font-size:1.4rem;padding:18px 0;border-bottom:1px solid var(--line)}
-  .menu a.on{border-color:var(--line);color:var(--red)}
+  .menu a.on{border-color:var(--line);box-shadow:inset 6px 0 0 var(--acc);padding-left:16px}
   .tools{margin-left:auto}
   .aplus-d{display:none}
   .aplus-m{display:inline-flex;align-self:flex-start;margin-top:18px}
@@ -185,6 +238,14 @@ h2{font-size:clamp(2rem,2.6vw,3.1rem)}
   .hero .lead{margin-top:clamp(10px,1.8svh,18px);font-size:clamp(1.1rem,2.5svh,1.3rem);line-height:1.45}
   .hero .btn{margin-top:clamp(24px,3svh,30px);width:100%}
   .hero .gdzie{margin-top:clamp(10px,1.6svh,16px);font-size:1rem}
+  .wpisy{grid-template-columns:minmax(0,1fr)}
+  .kat{flex-wrap:nowrap;overflow-x:auto;margin-inline:-16px;padding:0 16px 8px;scrollbar-width:thin}
+  .kat li{flex:none;white-space:nowrap}
+  .boczne{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;margin-inline:-16px;padding:0 16px 10px;scrollbar-width:thin}
+  .boczne .wpis{flex:0 0 82%;flex-direction:column;scroll-snap-align:start}
+  .projekty-l{grid-template-columns:minmax(0,1fr);gap:40px}
+  .partnerzy .wrap,.mc{grid-template-columns:minmax(0,1fr)}
+  .mc img{max-width:280px}
   .mediacja .wrap,.misja .wrap,.ankieta .wrap,.kontakt .wrap,.cytat .wrap{grid-template-columns:minmax(0,1fr)}
   .misja figure{position:static;order:2}
   .ankieta figure{order:-1}
@@ -218,8 +279,9 @@ h2{font-size:clamp(2rem,2.6vw,3.1rem)}
     <a class="logo" href="#start" aria-label="Rzecznik Praw Seniora - strona główna"><svg viewBox="0 0 242 84" width="242" height="84" aria-hidden="true" focusable="false"><use href="#lg"/></svg></a>
     <nav class="menu" id="menu" aria-label="Menu główne">
       <a href="#mediacja">O mediacji</a>
-      <a href="#misja">Misja</a>
-      <a href="#ankieta">Ankieta</a>
+      <a href="#aktualnosci">Aktualności</a>
+      <a href="#projekty">Projekty</a>
+      <a href="#partnerzy">Partnerzy</a>
       <a href="#kontakt">Kontakt</a>
       <button class="aplus aplus-m" type="button" aria-label="Powiększ tekst na stronie"><b>A+</b><span>Większy tekst</span></button>
     </nav>
@@ -265,6 +327,93 @@ h2{font-size:clamp(2rem,2.6vw,3.1rem)}
   </div>
 </section>
 
+<section class="aktualnosci szary" id="aktualnosci">
+  <div class="wrap">
+    <div class="glowa">
+      <div class="tekst">
+        <svg class="wezly" viewBox="0 0 120 16" aria-hidden="true" focusable="false"><path d="M4 8H116" stroke="currentColor" stroke-width="2" stroke-dasharray="26 6"/><circle cx="8" cy="8" r="5" fill="currentColor"/><circle cx="44" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/><circle cx="80" cy="8" r="5" fill="currentColor"/><circle cx="112" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/></svg>
+        <h2>Aktualności</h2>
+        <p class="duzy">Co nowego u nas, porady o prawach seniora i sprawy Polonii.</p>
+      </div>
+      <a class="wszystkie" href="#aktualnosci">Wszystkie aktualności</a>
+    </div>
+    <ul class="kat" aria-label="Tematy">
+      <li>Wszystkie</li><li>Prawa seniora</li><li>Mediacje</li><li>Polonia i seniorzy za granicą</li><li>Bezpieczni w sieci</li><li>Projekty</li>
+    </ul>
+    <div class="wpisy">
+      <a class="wpis duzy-w" href="#ankieta">
+        <div class="tr">
+          <div class="meta"><b>Projekty</b><span>przykładowy wpis</span></div>
+          <h3>Badanie potrzeb seniorów: prosimy o kilka minut i Państwa opinię</h3>
+          <p>Ankieta pomoże nam doprecyzować, w jakich sprawach seniorzy najbardziej potrzebują mediatora: w rodzinie, przy spadku, w sporze z instytucją czy z sąsiadem.</p>
+          <span class="dalej">Czytaj i wypełnij ankietę</span>
+          <svg class="wezly" viewBox="0 0 120 16" aria-hidden="true" focusable="false"><path d="M4 8H116" stroke="currentColor" stroke-width="2" stroke-dasharray="26 6"/><circle cx="8" cy="8" r="5" fill="currentColor"/><circle cx="44" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/><circle cx="80" cy="8" r="5" fill="currentColor"/><circle cx="112" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/></svg>
+        </div>
+      </a>
+      <div class="boczne">
+        <a class="wpis" href="#aktualnosci">
+          <div class="tr">
+            <div class="meta"><b>Mediacje</b><span>przykładowy wpis</span></div>
+            <h3>Mediacja rodzinna: kiedy warto po nią sięgnąć</h3>
+            <p>Spór o opiekę, mieszkanie albo spadek nie musi kończyć się w sądzie. Kilka sygnałów, że czas na rozmowę z mediatorem.</p>
+            <span class="dalej">Czytaj dalej</span>
+          </div>
+        </a>
+        <a class="wpis" href="#aktualnosci">
+          <div class="tr">
+            <div class="meta"><b>Polonia</b><span>przykładowy wpis</span></div>
+            <h3>Seniorzy za granicą: jak skontaktować się z mediatorem na odległość</h3>
+            <p>Mieszkają Państwo poza Polską? Mediacja może odbyć się online, bez przyjazdu do kraju.</p>
+            <span class="dalej">Czytaj dalej</span>
+          </div>
+        </a>
+        <a class="wpis" href="#aktualnosci">
+          <div class="tr">
+            <div class="meta"><b>Bezpieczni w sieci</b><span>przykładowy wpis</span></div>
+            <h3>SMS „od wnuczka” z prośbą o pieniądze? Jak rozpoznać oszustwo</h3>
+            <p>Pięć prostych zasad, które warto wydrukować i powiesić przy telefonie.</p>
+            <span class="dalej">Czytaj dalej</span>
+          </div>
+        </a>
+      </div>
+    </div>
+    <p class="uwaga">W podglądzie przykładowe wpisy. Na docelowej stronie aktualności i wpisy na blogu dodają Państwo sami w panelu, ze zdjęciem i tematem.</p>
+  </div>
+</section>
+
+<section class="projekty" id="projekty">
+  <div class="wrap">
+    <div class="tekst">
+      <svg class="wezly" viewBox="0 0 120 16" aria-hidden="true" focusable="false"><path d="M4 8H116" stroke="currentColor" stroke-width="2" stroke-dasharray="26 6"/><circle cx="8" cy="8" r="5" fill="currentColor"/><circle cx="44" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/><circle cx="80" cy="8" r="5" fill="currentColor"/><circle cx="112" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/></svg>
+      <h2>Realizowane projekty</h2>
+      <p class="duzy">Działania, które przybliżają mediację seniorom i ich rodzinom.</p>
+    </div>
+    <ol class="projekty-l">
+      <li>
+        <span class="nr">01</span>
+        <span class="stan">W toku</span>
+        <h3>Badanie potrzeb seniorów w kontekście możliwych mediacji</h3>
+        <p>Ankieta, która pozwoli doprecyzować obszary działania mediatorów występujących w obronie praw seniorów.</p>
+        <a class="btn" href="#ankieta">Wypełnij ankietę</a>
+      </li>
+      <li>
+        <span class="nr">02</span>
+        <span class="stan">Z Mediator Cafe</span>
+        <h3>Lokalne oddziały Rzecznika Praw Seniora</h3>
+        <p>W programie partnerskim Mediator Cafe mediatorzy z całej Polski mogą prowadzić lokalny oddział Rzecznika Praw Seniora w swoim mieście lub regionie.</p>
+        <a class="btn ciemny" href="https://mediatorcafe.pl/program-partnerski/" target="_blank" rel="noopener">Program partnerski</a>
+      </li>
+      <li>
+        <span class="nr">03</span>
+        <span class="stan">Przykład</span>
+        <h3>Polonia: prawa seniorów także poza Polską</h3>
+        <p>Informacje i porady dla seniorów mieszkających za granicą oraz kontakt z mediatorem na odległość.</p>
+        <a class="btn ciemny" href="#kontakt">Napisz do nas</a>
+      </li>
+    </ol>
+  </div>
+</section>
+
 <section class="misja szary" id="misja">
   <div class="wrap">
     <figure><img src="img/zagiel.webp" width="520" height="360" loading="lazy" alt="Dziadek z wnukiem na pokładzie żaglówki"></figure>
@@ -288,11 +437,31 @@ h2{font-size:clamp(2rem,2.6vw,3.1rem)}
       <p>„Wszystkie istoty ludzkie rodzą się wolne i równe w godności i prawach. Są one obdarzone rozumem i sumieniem oraz powinny postępować w stosunku do siebie wzajemnie w duchu braterstwa.”</p>
       <cite>Artykuł 1, Powszechna Deklaracja Praw Człowieka</cite>
     </blockquote>
-    <svg class="znak" viewBox="0 0 96 84" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="25" cy="44" r="21" stroke-width="2" stroke-dasharray="22 5"/><circle cx="25" cy="44" r="15" stroke-width="1.8" stroke-dasharray="12 7"/><polyline stroke-width="1.5" points="5.3,36.8 16.6,31.6 25.7,23.0 34.2,32.2 45.2,38.2 39.1,49.1 36.7,61.4 24.5,59.0 12.1,60.5 10.6,48.1"/><path stroke-width="7.5" d="M52.8,36.0 A19 19 0 1 1 58.3,59.0 Q50.9,62.0 45.5,53.9"/></g><circle cx="5.3" cy="36.8" r="2.7" fill="currentColor" stroke="currentColor" stroke-width="1.4"/><circle cx="16.6" cy="31.6" r="2.7" fill="#B00F2B" stroke="currentColor" stroke-width="1.4"/><circle cx="25.7" cy="23.0" r="2.7" fill="#B00F2B" stroke="currentColor" stroke-width="1.4"/><circle cx="34.2" cy="32.2" r="2.7" fill="currentColor" stroke="currentColor" stroke-width="1.4"/><circle cx="45.2" cy="38.2" r="2.7" fill="#B00F2B" stroke="currentColor" stroke-width="1.4"/><circle cx="39.1" cy="49.1" r="2.7" fill="#B00F2B" stroke="currentColor" stroke-width="1.4"/><circle cx="36.7" cy="61.4" r="2.7" fill="currentColor" stroke="currentColor" stroke-width="1.4"/><circle cx="24.5" cy="59.0" r="2.7" fill="#B00F2B" stroke="currentColor" stroke-width="1.4"/><circle cx="12.1" cy="60.5" r="2.7" fill="#B00F2B" stroke="currentColor" stroke-width="1.4"/><circle cx="10.6" cy="48.1" r="2.7" fill="currentColor" stroke="currentColor" stroke-width="1.4"/></svg>
+    <svg class="znak" viewBox="0 0 96 84" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="25" cy="44" r="21" stroke-width="2" stroke-dasharray="22 5"/><circle cx="25" cy="44" r="15" stroke-width="1.8" stroke-dasharray="12 7"/><polyline stroke-width="1.5" points="5.3,36.8 16.6,31.6 25.7,23.0 34.2,32.2 45.2,38.2 39.1,49.1 36.7,61.4 24.5,59.0 12.1,60.5 10.6,48.1"/><path stroke-width="7.5" d="M52.8,36.0 A19 19 0 1 1 58.3,59.0 Q50.9,62.0 45.5,53.9"/></g><circle cx="5.3" cy="36.8" r="2.7" fill="currentColor" stroke="currentColor" stroke-width="1.4"/><circle cx="16.6" cy="31.6" r="2.7" fill="#FFB30B" stroke="currentColor" stroke-width="1.4"/><circle cx="25.7" cy="23.0" r="2.7" fill="#FFB30B" stroke="currentColor" stroke-width="1.4"/><circle cx="34.2" cy="32.2" r="2.7" fill="currentColor" stroke="currentColor" stroke-width="1.4"/><circle cx="45.2" cy="38.2" r="2.7" fill="#FFB30B" stroke="currentColor" stroke-width="1.4"/><circle cx="39.1" cy="49.1" r="2.7" fill="#FFB30B" stroke="currentColor" stroke-width="1.4"/><circle cx="36.7" cy="61.4" r="2.7" fill="currentColor" stroke="currentColor" stroke-width="1.4"/><circle cx="24.5" cy="59.0" r="2.7" fill="#FFB30B" stroke="currentColor" stroke-width="1.4"/><circle cx="12.1" cy="60.5" r="2.7" fill="#FFB30B" stroke="currentColor" stroke-width="1.4"/><circle cx="10.6" cy="48.1" r="2.7" fill="currentColor" stroke="currentColor" stroke-width="1.4"/></svg>
   </div>
 </section>
 
-<section class="ankieta" id="ankieta">
+<section class="partnerzy" id="partnerzy">
+  <div class="wrap">
+    <div class="tekst">
+      <svg class="wezly" viewBox="0 0 120 16" aria-hidden="true" focusable="false"><path d="M4 8H116" stroke="currentColor" stroke-width="2" stroke-dasharray="26 6"/><circle cx="8" cy="8" r="5" fill="currentColor"/><circle cx="44" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/><circle cx="80" cy="8" r="5" fill="currentColor"/><circle cx="112" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/></svg>
+      <h2>Partnerzy</h2>
+      <p class="duzy">Współpracujemy z tymi, którym bliskie są prawa seniorów.</p>
+      <p>Tu pokażemy logotypy i krótkie opisy partnerów, z linkami do ich stron:</p>
+      <ul class="typy"><li>samorządy</li><li>organizacje senioralne</li><li>uniwersytety trzeciego wieku</li><li>organizacje polonijne</li><li>firmy (CSR i ESG)</li></ul>
+    </div>
+    <div class="mc">
+      <img src="img/mediatorcafe.webp" width="500" height="270" loading="lazy" alt="Logo Mediator Cafe: moc konsensusu, harmonii i świętego spokoju">
+      <div>
+        <h3>Mediator Cafe</h3>
+        <p>Nasz projekt siostrzany: mediacje dla ludzi i dla biznesu, w tym mediacje senioralne, rodzinne i spadkowe. Także online.</p>
+        <a class="btn" href="https://mediatorcafe.pl" target="_blank" rel="noopener">Przejdź na mediatorcafe.pl</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ankieta szary" id="ankieta">
   <div class="wrap">
     <div class="tekst">
       <svg class="wezly" viewBox="0 0 120 16" aria-hidden="true" focusable="false"><path d="M4 8H116" stroke="currentColor" stroke-width="2" stroke-dasharray="26 6"/><circle cx="8" cy="8" r="5" fill="currentColor"/><circle cx="44" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/><circle cx="80" cy="8" r="5" fill="currentColor"/><circle cx="112" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/></svg>
@@ -309,7 +478,7 @@ h2{font-size:clamp(2rem,2.6vw,3.1rem)}
   </div>
 </section>
 
-<section class="kontakt szary" id="kontakt">
+<section class="kontakt" id="kontakt">
   <div class="wrap">
     <div>
       <svg class="wezly" viewBox="0 0 120 16" aria-hidden="true" focusable="false"><path d="M4 8H116" stroke="currentColor" stroke-width="2" stroke-dasharray="26 6"/><circle cx="8" cy="8" r="5" fill="currentColor"/><circle cx="44" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/><circle cx="80" cy="8" r="5" fill="currentColor"/><circle cx="112" cy="8" r="4.5" fill="#fff" stroke="currentColor" stroke-width="2.4"/></svg>
@@ -346,9 +515,17 @@ h2{font-size:clamp(2rem,2.6vw,3.1rem)}
       <h3>Na stronie</h3>
       <ul>
         <li><a href="#mediacja">O mediacji</a></li>
-        <li><a href="#misja">Misja</a></li>
-        <li><a href="#ankieta">Ankieta</a></li>
+        <li><a href="#aktualnosci">Aktualności</a></li>
+        <li><a href="#projekty">Projekty</a></li>
+        <li><a href="#partnerzy">Partnerzy</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Projekt siostrzany</h3>
+      <ul>
+        <li><a href="https://mediatorcafe.pl" target="_blank" rel="noopener">mediatorcafe.pl</a></li>
+        <li>Mediacje dla ludzi i biznesu</li>
       </ul>
     </div>
     <div class="dol">
